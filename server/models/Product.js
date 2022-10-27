@@ -11,6 +11,10 @@ const productSchema = new Schema(
         description: {
             type: String
         },
+        price: {
+            type: Number,
+            required: true
+        },
         isCounted: {
             type: Boolean,
             default: false
