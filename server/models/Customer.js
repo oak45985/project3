@@ -36,7 +36,8 @@ const customerSchema = new Schema(
     },
     {
         toJSON: {
-            virtuals: true
+            virtuals: true,
+            getters: true
         }
     }
 );
@@ -52,9 +53,12 @@ const customerSchema = new Schema(
 // customerSchema.methods.isCorrectPassword = async function(password) {
 //     return bcrypt.compare(password, this.password);
 // };
+customerSchema.virtual('customerTagList').get(function() {
+    return this.customerTags.customerTagSchema;
+});
 
 customerSchema.virtual('orderCount').get(function() {
-    return this.orders.length;
+    return this.orders;
 });
 
 const Customer = model('Customer', customerSchema);

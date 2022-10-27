@@ -54,12 +54,20 @@ const productSchema = new Schema(
         variants: [variantSchema],
         productTags: [productTagSchema]
     },
-  {
-    toJSON: {
-        getters: true
+    {
+        toJSON: {
+            getters: true
+        }
     }
-  }
 );
+
+productSchema.virtual('variantList').get(function() {
+    return this.variants.variantSchema;
+});
+
+productSchema.virtual('productTagList').get(function() {
+    return this.productTags.productTagSchema;
+});
 
 const Product = model('Product', productSchema);
 

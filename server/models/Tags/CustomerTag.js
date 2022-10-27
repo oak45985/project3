@@ -6,11 +6,6 @@ const customerTagSchema = new Schema(
             type: String,
             maxlength: 50
         }
-    },
-    {
-        toJSON: {
-            getters: true
-        }
     }
 );
 
