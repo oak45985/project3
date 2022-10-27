@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-// const orderTagSchema = require('./Tags/OrderTag');
 
 const orderSchema = new Schema(
     {
@@ -13,8 +12,10 @@ const orderSchema = new Schema(
             type: Date,
             default: Date.now
         },
-        code: {
-            type: String
+        isMember: {
+            type: Boolean,
+            default: false,
+            required: true
         },
         products: [
             {

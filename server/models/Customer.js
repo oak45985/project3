@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const customerTagSchema = require('./Tags/CustomerTag');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
 const customerSchema = new Schema(
     {
@@ -41,17 +41,17 @@ const customerSchema = new Schema(
     }
 );
 
-customerSchema.pre('save', async function(next) {
-    if (this.isNew || this.isModified('password')) {
-        const saltRounds = 10;
-        this.password = await bcrypt.hash(this.password, saltRounds);
-    }
-    next();
-});
+// customerSchema.pre('save', async function(next) {
+//     if (this.isNew || this.isModified('password')) {
+//         const saltRounds = 10;
+//         this.password = await bcrypt.hash(this.password, saltRounds);
+//     }
+//     next();
+// });
 
-customerSchema.methods.isCorrectPassword = async function(password) {
-    return bcrypt.compare(password, this.password);
-};
+// customerSchema.methods.isCorrectPassword = async function(password) {
+//     return bcrypt.compare(password, this.password);
+// };
 
 customerSchema.virtual('orderCount').get(function() {
     return this.orders.length;
