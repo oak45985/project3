@@ -1,28 +1,6 @@
 const { Schema, model } = require('mongoose');
-
-const productTagSchema = new Schema(
-    {
-        productTag: {
-            type: String,
-            required: true,
-            maxlength: 50
-        }
-    }
-);
-
-const variantSchema = new Schema(
-    {
-        variantTitle: {
-            type: String,
-            required: true
-        },
-        sku: {
-            type: String,
-            required: true,
-            toUpperCase: true
-        }
-    }
-);
+const productTagSchema = require('./ProductTag');
+const variantSchema = require('./Variant');
 
 const productSchema = new Schema(
     {
@@ -36,6 +14,9 @@ const productSchema = new Schema(
         price: {
             type: Number,
             required: true
+        },
+        quantity: {
+            type: Number
         },
         isClass: {
             type: Boolean,

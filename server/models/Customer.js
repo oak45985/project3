@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const customerTagSchema = require('./Tags/CustomerTag');
+const customerTagSchema = require('./CustomerTag');
 // const bcrypt = require('bcrypt');
 
 const customerSchema = new Schema(
@@ -20,7 +20,6 @@ const customerSchema = new Schema(
             type: String,
             required: true,
             minlength: 5,
-            maxlength: 15
         },
         isMember: {
             type: Boolean,
