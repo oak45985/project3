@@ -8,6 +8,16 @@ const typeDefs = gql`
     password: String
   }
 
+  type Customer {
+    _id: ID
+    customerName: String
+    email: String
+    password: String
+    isMember: Boolean
+    customerTags: [customerTag]
+    orders: [Order]
+  }
+
   type Product {
     _id: ID
     title: String
@@ -21,6 +31,15 @@ const typeDefs = gql`
     productTags: [ProductTag]
   }
 
+  type Order {
+    _id: ID
+    orderNumber: Int
+    createdAt: String
+    isMember: Boolean
+    products: [Product]
+    customer: [Customer]
+  }
+
   type Variant {
     _id: ID
     variantTitle: String
@@ -32,11 +51,18 @@ const typeDefs = gql`
     productTag: String
   }
 
+  type CustomerTag {
+    _id: ID
+    customerTag: String
+  }
+
   type Query {
     allStaff: [Staff]
     staff(staffName: String!): Staff
     products: [Product]
     product(title: String!): Product
+    order: [Order]
+    orders(orderNumber: Int!): Order
   }
 
   type Mutation {
@@ -44,6 +70,8 @@ const typeDefs = gql`
     addProduct(title: String!, description: String!, price: Int!, isClass: Boolean!, isCounted: Boolean!, isFree: Boolean!): Product
     addProductTag(productId: ID!, productTag: String!): Product
     addVariant(productId: ID!, variantTitle: String!, sku: String!): Product
+    addOrder(orderNumber: Int!, createdAt: String!, isMember: Boolean!): Order
+    addCustomer(customerName: String!, email: String!, password: String!, isMember: Boolean!): Customer
   }
 `;
 
